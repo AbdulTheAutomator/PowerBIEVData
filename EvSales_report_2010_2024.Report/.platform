@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "EvSales_report_2010_2024"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "5916852a-6713-488b-b360-3c98369d4446"
+  }
+}
