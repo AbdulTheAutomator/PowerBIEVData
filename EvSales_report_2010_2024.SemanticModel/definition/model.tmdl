@@ -1,5 +1,14 @@
 model Model
 	culture: en-GB
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-GB
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+queryGroup normalised
+
+	annotation PBI_QueryGroupOrder = 0
 
 annotation __PBI_TimeIntelligenceEnabled = 1
 
@@ -7,7 +16,18 @@ annotation PBIDesktopVersion = 2.131.1203.0 (24.07)
 
 annotation PBI_ProTooling = ["DevMode"]
 
+annotation PBI_QueryOrder = ["deNormal_sales","f_chargingPoints","f_sales","f_salesShare","f_stock","f_stockShare","f_oilDisplacement_mbd","f_oilDisplacementMillionLge","f_electricDemand"]
+
 ref table DateTableTemplate_80a34041-0232-46d2-8956-f4b41bd8802d
+ref table deNormal_sales
+ref table f_chargingPoints
+ref table f_sales
+ref table f_salesShare
+ref table f_stock
+ref table f_stockShare
+ref table f_oilDisplacement_mbd
+ref table f_oilDisplacementMillionLge
+ref table f_electricDemand
 
 ref cultureInfo en-GB
 
