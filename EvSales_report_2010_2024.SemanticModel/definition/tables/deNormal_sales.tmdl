@@ -1,0 +1,80 @@
+table deNormal_sales
+	lineageTag: 0aea7008-6ea6-4825-84fd-87629fabf192
+
+	column region
+		dataType: string
+		lineageTag: 9a110ec3-030f-40b1-afbf-8a458dca933c
+		summarizeBy: none
+		sourceColumn: region
+
+		annotation SummarizationSetBy = Automatic
+
+	column category
+		dataType: string
+		lineageTag: 91132678-7b88-4ec4-ad9f-20fdcf88686d
+		summarizeBy: none
+		sourceColumn: category
+
+		annotation SummarizationSetBy = Automatic
+
+	column parameter
+		dataType: string
+		lineageTag: bd26368f-c21e-4c87-ac8a-54121bb2b877
+		summarizeBy: none
+		sourceColumn: parameter
+
+		annotation SummarizationSetBy = Automatic
+
+	column mode
+		dataType: string
+		lineageTag: 55c50358-db6f-4cc0-a115-75d88cf45b33
+		summarizeBy: none
+		sourceColumn: mode
+
+		annotation SummarizationSetBy = Automatic
+
+	column powertrain
+		dataType: string
+		lineageTag: c28080dc-ddbf-4400-8f6a-a2d51d82a1b4
+		summarizeBy: none
+		sourceColumn: powertrain
+
+		annotation SummarizationSetBy = Automatic
+
+	column year
+		dataType: string
+		lineageTag: a23fbf55-e866-417b-9a41-011d5b8833ad
+		summarizeBy: none
+		sourceColumn: year
+
+		annotation SummarizationSetBy = Automatic
+
+	column value
+		dataType: string
+		lineageTag: 49da752b-7231-4f2b-b611-6524010a6dd7
+		summarizeBy: none
+		sourceColumn: value
+
+		annotation SummarizationSetBy = Automatic
+
+	column unit
+		dataType: string
+		lineageTag: 7973ccb3-1f37-4915-8702-d06fdf6f17cb
+		summarizeBy: none
+		sourceColumn: unit
+
+		annotation SummarizationSetBy = Automatic
+
+	partition deNormal_sales = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("C:\Users\abdul\Documents\powerBIDemo_EVSales\PowerBIEVData\dataset\IEA Global EV Data 2024.csv"),[Delimiter=",", Columns=8, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true])
+				in
+				    #"Promoted Headers"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

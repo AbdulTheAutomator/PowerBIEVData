@@ -1,0 +1,81 @@
+table f_oilDisplacement_mbd
+	lineageTag: cce16a7d-aea7-4f2b-bdd8-8620daa83655
+
+	column region
+		dataType: string
+		lineageTag: 9eb52d6a-0938-4505-828f-c41d9a7ed762
+		summarizeBy: none
+		sourceColumn: region
+
+		annotation SummarizationSetBy = Automatic
+
+	column category
+		dataType: string
+		lineageTag: 781bb5b6-3513-463a-aef8-9de6136cf8e0
+		summarizeBy: none
+		sourceColumn: category
+
+		annotation SummarizationSetBy = Automatic
+
+	column parameter
+		dataType: string
+		lineageTag: ae78f70d-9297-4a35-b103-f0db7439f4b0
+		summarizeBy: none
+		sourceColumn: parameter
+
+		annotation SummarizationSetBy = Automatic
+
+	column mode
+		dataType: string
+		lineageTag: 88867a80-a7dd-4012-af3f-8741738577e2
+		summarizeBy: none
+		sourceColumn: mode
+
+		annotation SummarizationSetBy = Automatic
+
+	column powertrain
+		dataType: string
+		lineageTag: d09561c2-aab7-4a2c-bc75-91c929be8419
+		summarizeBy: none
+		sourceColumn: powertrain
+
+		annotation SummarizationSetBy = Automatic
+
+	column year
+		dataType: string
+		lineageTag: b93a371b-6e47-453f-be33-8a5f7b501c0e
+		summarizeBy: none
+		sourceColumn: year
+
+		annotation SummarizationSetBy = Automatic
+
+	column unit
+		dataType: string
+		lineageTag: ca0ce572-986b-4deb-8baf-1c8099d6f770
+		summarizeBy: none
+		sourceColumn: unit
+
+		annotation SummarizationSetBy = Automatic
+
+	column value
+		dataType: string
+		lineageTag: 9cfc515c-7db0-44a3-84ae-f0596959ae33
+		summarizeBy: none
+		sourceColumn: value
+
+		annotation SummarizationSetBy = Automatic
+
+	partition f_oilDisplacement_mbd = m
+		mode: import
+		queryGroup: normalised
+		source =
+				let
+				    Source = deNormal_sales,
+				    #"Filtered Rows" = Table.SelectRows(Source, each ([parameter] = "Oil displacement Mbd"))
+				in
+				    #"Filtered Rows"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

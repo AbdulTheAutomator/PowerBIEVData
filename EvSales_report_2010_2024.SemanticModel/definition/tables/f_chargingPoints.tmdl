@@ -1,0 +1,81 @@
+table f_chargingPoints
+	lineageTag: 80b9550a-74de-44dd-8ba4-2ddd36ed671b
+
+	column region
+		dataType: string
+		lineageTag: 894c360c-0b84-4b40-99d6-e125328126e5
+		summarizeBy: none
+		sourceColumn: region
+
+		annotation SummarizationSetBy = Automatic
+
+	column category
+		dataType: string
+		lineageTag: 7a8ec2c5-e5de-4f7c-8148-3a3113ddefb7
+		summarizeBy: none
+		sourceColumn: category
+
+		annotation SummarizationSetBy = Automatic
+
+	column parameter
+		dataType: string
+		lineageTag: d12420d4-4db7-4338-8e96-930c7ebafbc7
+		summarizeBy: none
+		sourceColumn: parameter
+
+		annotation SummarizationSetBy = Automatic
+
+	column mode
+		dataType: string
+		lineageTag: 4c74001e-5a21-4136-addd-35ce359d58be
+		summarizeBy: none
+		sourceColumn: mode
+
+		annotation SummarizationSetBy = Automatic
+
+	column powertrain
+		dataType: string
+		lineageTag: 3e9b4b0b-9974-4397-80f5-dcff233e2e66
+		summarizeBy: none
+		sourceColumn: powertrain
+
+		annotation SummarizationSetBy = Automatic
+
+	column year
+		dataType: string
+		lineageTag: eac63d10-4956-44a3-b9cb-c335b2b486b2
+		summarizeBy: none
+		sourceColumn: year
+
+		annotation SummarizationSetBy = Automatic
+
+	column unit
+		dataType: string
+		lineageTag: f3ab65fb-59c2-465f-a3b2-d15071452a92
+		summarizeBy: none
+		sourceColumn: unit
+
+		annotation SummarizationSetBy = Automatic
+
+	column value
+		dataType: string
+		lineageTag: 98c69404-8253-4d96-8b1e-1b3e2eef9266
+		summarizeBy: none
+		sourceColumn: value
+
+		annotation SummarizationSetBy = Automatic
+
+	partition f_chargingPoints = m
+		mode: import
+		queryGroup: normalised
+		source =
+				let
+				    Source = deNormal_sales,
+				    #"Filtered Rows" = Table.SelectRows(Source, each ([parameter] = "EV charging points"))
+				in
+				    #"Filtered Rows"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

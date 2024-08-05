@@ -1,0 +1,81 @@
+table f_stock
+	lineageTag: cdd53a79-59d3-4c3f-ab56-474838704959
+
+	column region
+		dataType: string
+		lineageTag: 7736e973-bdda-4dec-8d87-be002ff71c7c
+		summarizeBy: none
+		sourceColumn: region
+
+		annotation SummarizationSetBy = Automatic
+
+	column category
+		dataType: string
+		lineageTag: 1cca250b-5a4b-4dc9-b545-6b63e6f96bde
+		summarizeBy: none
+		sourceColumn: category
+
+		annotation SummarizationSetBy = Automatic
+
+	column parameter
+		dataType: string
+		lineageTag: e452b2c2-e3b2-47d1-a504-634a1496fe52
+		summarizeBy: none
+		sourceColumn: parameter
+
+		annotation SummarizationSetBy = Automatic
+
+	column mode
+		dataType: string
+		lineageTag: a5a4f7a8-a40f-4e7a-b9c6-15145f5e7de5
+		summarizeBy: none
+		sourceColumn: mode
+
+		annotation SummarizationSetBy = Automatic
+
+	column powertrain
+		dataType: string
+		lineageTag: 3f90d7b8-cd86-40d6-85a2-32e1fc4e5834
+		summarizeBy: none
+		sourceColumn: powertrain
+
+		annotation SummarizationSetBy = Automatic
+
+	column year
+		dataType: string
+		lineageTag: 18f59608-8e51-452e-a902-e223dcb2500b
+		summarizeBy: none
+		sourceColumn: year
+
+		annotation SummarizationSetBy = Automatic
+
+	column unit
+		dataType: string
+		lineageTag: ed3b4e95-18f6-4373-9e6a-5501d640db1e
+		summarizeBy: none
+		sourceColumn: unit
+
+		annotation SummarizationSetBy = Automatic
+
+	column value
+		dataType: string
+		lineageTag: 2446b7a9-9500-436e-a1cb-59319ab03c38
+		summarizeBy: none
+		sourceColumn: value
+
+		annotation SummarizationSetBy = Automatic
+
+	partition f_stock = m
+		mode: import
+		queryGroup: normalised
+		source =
+				let
+				    Source = deNormal_sales,
+				    #"Filtered Rows" = Table.SelectRows(Source, each ([parameter] = "EV stock"))
+				in
+				    #"Filtered Rows"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

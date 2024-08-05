@@ -1,0 +1,81 @@
+table f_electricDemand
+	lineageTag: 0e76f2d7-11cb-4711-a169-217124c17c2b
+
+	column region
+		dataType: string
+		lineageTag: 4381e4d1-f5de-4c56-b00b-ef2b7884a0d9
+		summarizeBy: none
+		sourceColumn: region
+
+		annotation SummarizationSetBy = Automatic
+
+	column category
+		dataType: string
+		lineageTag: d2cd0745-9740-477b-8ef8-10a8e22b8add
+		summarizeBy: none
+		sourceColumn: category
+
+		annotation SummarizationSetBy = Automatic
+
+	column parameter
+		dataType: string
+		lineageTag: d6dfffff-6a60-4c5e-894f-0634b3211df6
+		summarizeBy: none
+		sourceColumn: parameter
+
+		annotation SummarizationSetBy = Automatic
+
+	column mode
+		dataType: string
+		lineageTag: 24925d85-06fc-4fe0-aa95-8fd4d1c326f3
+		summarizeBy: none
+		sourceColumn: mode
+
+		annotation SummarizationSetBy = Automatic
+
+	column powertrain
+		dataType: string
+		lineageTag: 9951fa0d-3a66-48a6-b735-5b57dad7a08c
+		summarizeBy: none
+		sourceColumn: powertrain
+
+		annotation SummarizationSetBy = Automatic
+
+	column year
+		dataType: string
+		lineageTag: a970e976-d1f4-498c-9aa7-e9b27136c741
+		summarizeBy: none
+		sourceColumn: year
+
+		annotation SummarizationSetBy = Automatic
+
+	column unit
+		dataType: string
+		lineageTag: f7a7ebb7-c09f-4072-8a04-dbe17b8ff66d
+		summarizeBy: none
+		sourceColumn: unit
+
+		annotation SummarizationSetBy = Automatic
+
+	column value
+		dataType: string
+		lineageTag: fb818626-bc11-4014-a9f5-dc07fd8368a1
+		summarizeBy: none
+		sourceColumn: value
+
+		annotation SummarizationSetBy = Automatic
+
+	partition f_electricDemand = m
+		mode: import
+		queryGroup: normalised
+		source =
+				let
+				    Source = deNormal_sales,
+				    #"Filtered Rows" = Table.SelectRows(Source, each ([parameter] = "Electricity demand"))
+				in
+				    #"Filtered Rows"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

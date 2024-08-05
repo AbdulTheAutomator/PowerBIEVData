@@ -1,0 +1,81 @@
+table f_oilDisplacementMillionLge
+	lineageTag: 10cfb9c8-76a8-4023-b2d6-ce08de68aac2
+
+	column region
+		dataType: string
+		lineageTag: 00832b6b-ae0f-4cd3-8db4-5fe0d4a27308
+		summarizeBy: none
+		sourceColumn: region
+
+		annotation SummarizationSetBy = Automatic
+
+	column category
+		dataType: string
+		lineageTag: 7ef60861-f3c3-47e1-affd-89d627a9d578
+		summarizeBy: none
+		sourceColumn: category
+
+		annotation SummarizationSetBy = Automatic
+
+	column parameter
+		dataType: string
+		lineageTag: fa3ebeec-dc5c-427c-8446-fe7df79038d2
+		summarizeBy: none
+		sourceColumn: parameter
+
+		annotation SummarizationSetBy = Automatic
+
+	column mode
+		dataType: string
+		lineageTag: 18a171e6-e756-4e90-88e7-7c11b7a5a71c
+		summarizeBy: none
+		sourceColumn: mode
+
+		annotation SummarizationSetBy = Automatic
+
+	column powertrain
+		dataType: string
+		lineageTag: bcba04db-0101-4c68-9a9f-ad6d74b9aded
+		summarizeBy: none
+		sourceColumn: powertrain
+
+		annotation SummarizationSetBy = Automatic
+
+	column year
+		dataType: string
+		lineageTag: 3e945ab7-962d-4c2d-bfd7-67def5913e08
+		summarizeBy: none
+		sourceColumn: year
+
+		annotation SummarizationSetBy = Automatic
+
+	column unit
+		dataType: string
+		lineageTag: b38c1c83-284d-4a97-b360-f1ef9bf84d97
+		summarizeBy: none
+		sourceColumn: unit
+
+		annotation SummarizationSetBy = Automatic
+
+	column value
+		dataType: string
+		lineageTag: 0c2a5704-4b14-4301-af08-81e51e8e04ae
+		summarizeBy: none
+		sourceColumn: value
+
+		annotation SummarizationSetBy = Automatic
+
+	partition f_oilDisplacementMillionLge = m
+		mode: import
+		queryGroup: normalised
+		source =
+				let
+				    Source = deNormal_sales,
+				    #"Filtered Rows" = Table.SelectRows(Source, each ([parameter] = "Oil displacement, million lge"))
+				in
+				    #"Filtered Rows"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

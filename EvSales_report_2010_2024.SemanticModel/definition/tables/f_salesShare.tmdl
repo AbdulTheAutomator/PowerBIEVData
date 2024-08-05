@@ -1,0 +1,81 @@
+table f_salesShare
+	lineageTag: 0a66be53-973e-4201-bbe5-d5887c88703f
+
+	column region
+		dataType: string
+		lineageTag: 913cc356-7c12-49e4-b9f2-2c9b8e5c9ca4
+		summarizeBy: none
+		sourceColumn: region
+
+		annotation SummarizationSetBy = Automatic
+
+	column category
+		dataType: string
+		lineageTag: 9f0e68c6-d9e8-47ca-a292-2892270c059f
+		summarizeBy: none
+		sourceColumn: category
+
+		annotation SummarizationSetBy = Automatic
+
+	column parameter
+		dataType: string
+		lineageTag: 163979ec-afac-45a7-afd3-5d9c720164a1
+		summarizeBy: none
+		sourceColumn: parameter
+
+		annotation SummarizationSetBy = Automatic
+
+	column mode
+		dataType: string
+		lineageTag: 7036b8e5-8be2-43f1-a719-89bf4c249b62
+		summarizeBy: none
+		sourceColumn: mode
+
+		annotation SummarizationSetBy = Automatic
+
+	column powertrain
+		dataType: string
+		lineageTag: 849201f1-03c8-413e-97fb-eef662f1c6c3
+		summarizeBy: none
+		sourceColumn: powertrain
+
+		annotation SummarizationSetBy = Automatic
+
+	column year
+		dataType: string
+		lineageTag: 36a4d422-74dc-4b73-9d6e-ae50ff26444f
+		summarizeBy: none
+		sourceColumn: year
+
+		annotation SummarizationSetBy = Automatic
+
+	column unit
+		dataType: string
+		lineageTag: 22a063fa-7b63-4433-9c08-9a5af4ed7ce7
+		summarizeBy: none
+		sourceColumn: unit
+
+		annotation SummarizationSetBy = Automatic
+
+	column value
+		dataType: string
+		lineageTag: 48a05cf1-6be7-451d-bbed-475cc2e132aa
+		summarizeBy: none
+		sourceColumn: value
+
+		annotation SummarizationSetBy = Automatic
+
+	partition f_salesShare = m
+		mode: import
+		queryGroup: normalised
+		source =
+				let
+				    Source = deNormal_sales,
+				    #"Filtered Rows" = Table.SelectRows(Source, each ([parameter] = "EV sales share"))
+				in
+				    #"Filtered Rows"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
